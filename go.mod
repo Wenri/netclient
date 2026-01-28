@@ -13,7 +13,7 @@ require (
 	github.com/google/nftables v0.3.0
 	github.com/google/uuid v1.6.0
 	github.com/gorilla/websocket v1.5.3
-	github.com/gravitl/netmaker v1.4.1-0.20260106165716-7338ec3f438d
+	github.com/gravitl/netmaker v1.4.1-0.20260128050551-d476e79278c1
 	github.com/gravitl/tcping v0.1.2-0.20230801110928-546055ebde06
 	github.com/hashicorp/go-retryablehttp v0.7.8
 	github.com/hashicorp/go-version v1.8.0
@@ -48,10 +48,10 @@ require (
 	github.com/Masterminds/semver/v3 v3.4.0 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/fsnotify/fsnotify v1.9.0 // indirect
-	github.com/gabriel-vasile/mimetype v1.4.10 // indirect
+	github.com/gabriel-vasile/mimetype v1.4.12 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
-	github.com/go-playground/validator/v10 v10.28.0 // indirect
+	github.com/go-playground/validator/v10 v10.30.0 // indirect
 	github.com/go-sql-driver/mysql v1.8.1 // indirect
 	github.com/go-viper/mapstructure/v2 v2.4.0 // indirect
 	github.com/google/go-cmp v0.7.0 // indirect
@@ -88,7 +88,7 @@ require (
 	github.com/spf13/cast v1.10.0 // indirect
 	github.com/spf13/pflag v1.0.10 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
-	github.com/txn2/txeh v1.5.5 // indirect
+	github.com/txn2/txeh v1.7.0 // indirect
 	github.com/vishvananda/netns v0.0.5 // indirect
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
 	golang.org/x/mod v0.31.0 // indirect
@@ -96,7 +96,7 @@ require (
 	golang.org/x/tools v0.40.0 // indirect
 	golang.zx2c4.com/wintun v0.0.0-20211104114900-415007cec224 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20251029180050-ab9386a59fda // indirect
-	google.golang.org/protobuf v1.36.10 // indirect
+	google.golang.org/protobuf v1.36.11 // indirect
 	gorm.io/datatypes v1.2.7 // indirect
 	gorm.io/driver/mysql v1.5.6 // indirect
 	gorm.io/driver/postgres v1.6.0 // indirect
