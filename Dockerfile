@@ -6,20 +6,20 @@ COPY . .
 RUN go mod tidy
 RUN GOOS=linux CGO_ENABLED=1 /usr/local/go/bin/go build -ldflags="-s -w" -o netclient-app .
 
-FROM ubuntu:22.04
+# Use this version until this issue is resolved.
+# https://github.com/NetworkConfiguration/openresolv/issues/45
+FROM alpine:latest
 
 WORKDIR /root/
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apk add --no-cache --update \
         bash \
-        libmnl0 \
-        openresolv \
         iproute2 \
         wireguard-tools \
-        systemd \
+        openresolv \
         iptables \
-        nftables \
-    && rm -rf /var/lib/apt/lists/*
+        ip6tables \
+        nftables
 
 COPY --from=builder /app/netclient-app ./netclient
 COPY --from=builder /app/scripts/netclient.sh .
