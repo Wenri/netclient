@@ -721,9 +721,9 @@ func GetPublicIP(proto uint) (net.IP, error) {
 	consensus := externalip.NewConsensus(&externalip.ConsensusConfig{
 		Timeout: time.Second * 10,
 	}, nil)
-	consensus.AddVoter(externalip.NewHTTPSource("https://icanhazip.com/"), 3)
-	consensus.AddVoter(externalip.NewHTTPSource("https://ifconfig.me/ip"), 3)
-	consensus.AddVoter(externalip.NewHTTPSource("https://myexternalip.com/raw"), 3)
+	consensus.AddVoter(&ip112Source{}, 3)
+	consensus.AddVoter(&ip138Source{}, 3)
+	consensus.AddVoter(&ip111Source{}, 3)
 	// By default Ipv4 or Ipv6 is returned,
 	// use the function below to limit yourself to IPv4,
 	// or pass in `6` instead to limit yourself to IPv6.
