@@ -716,18 +716,19 @@ func holePunchWgPort(proto, portToStun int) (pubIP net.IP, pubPort int, natType 
 }
 
 func GetPublicIP(proto uint) (net.IP, error) {
-	// Create the default consensus,
-	// using the default configuration and no logger.
 	consensus := externalip.NewConsensus(&externalip.ConsensusConfig{
 		Timeout: time.Second * 10,
 	}, nil)
-	consensus.AddVoter(&ip112Source{}, 3)
-	consensus.AddVoter(&ip138Source{}, 3)
-	consensus.AddVoter(&ip111Source{}, 3)
-	// By default Ipv4 or Ipv6 is returned,
-	// use the function below to limit yourself to IPv4,
-	// or pass in `6` instead to limit yourself to IPv6.
+	if proto == 6 {
+		// Chinese IP services don't support IPv6, use original sources
+		consensus.AddVoter(externalip.NewHTTPSource("https://icanhazip.com/"), 3)
+		consensus.AddVoter(externalip.NewHTTPSource("https://ifconfig.me/ip"), 3)
+		consensus.AddVoter(externalip.NewHTTPSource("https://myexternalip.com/raw"), 3)
+	} else {
+		consensus.AddVoter(&ip112Source{}, 3)
+		consensus.AddVoter(&ip138Source{}, 3)
+		consensus.AddVoter(&ip111Source{}, 3)
+	}
 	consensus.UseIPProtocol(proto)
-	// Get your IP,
 	return consensus.ExternalIP()
 }
