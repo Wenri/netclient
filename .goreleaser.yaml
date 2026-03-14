@@ -44,9 +44,15 @@ builds:
           - CGO_ENABLED=1
           - CC=mips64el-linux-gnuabi64-gcc
       - goos: darwin
+        goarch: amd64
+        env:
+          - CGO_ENABLED=0
+      - goos: darwin
+        goarch: arm64
         env:
           - CGO_ENABLED=0
       - goos: windows
+        goarch: amd64
         env:
           - CGO_ENABLED=1
           - CC=x86_64-w64-mingw32-gcc
