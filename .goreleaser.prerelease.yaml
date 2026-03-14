@@ -17,6 +17,7 @@ builds:
       - linux_mipsle_hardfloat
       - linux_mips64le_hardfloat
       - windows_amd64
+      - windows_arm64
       - darwin_amd64
       - darwin_arm64
     overrides:
@@ -48,6 +49,11 @@ builds:
         env:
           - CGO_ENABLED=1
           - CC=x86_64-w64-mingw32-gcc
+      - goos: windows
+        goarch: arm64
+        env:
+          - CGO_ENABLED=1
+          - CC=aarch64-w64-mingw32-gcc
       - goos: darwin
         goarch: amd64
         env:
