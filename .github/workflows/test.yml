@@ -10,7 +10,7 @@ on:
 jobs:
   linux-headless:
     runs-on: arc-runner-set
-    container: ubuntu:latest
+    container: buildpack-deps:noble
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -24,7 +24,7 @@ jobs:
 
   tests:
     runs-on: arc-runner-set
-    container: ubuntu:latest
+    container: buildpack-deps:noble
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -38,7 +38,7 @@ jobs:
 
   staticcheck:
     runs-on: arc-runner-set
-    container: ubuntu:latest
+    container: buildpack-deps:noble
     steps:
       - name: Checkout
         uses: actions/checkout@v6

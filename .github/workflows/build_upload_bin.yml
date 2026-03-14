@@ -16,7 +16,7 @@ jobs:
   build-linux:
     name: Build Linux
     runs-on: arc-runner-set
-    container: ubuntu:latest
+    container: buildpack-deps:noble
     strategy:
       matrix:
         include:
@@ -137,7 +137,7 @@ jobs:
   upload:
     needs: [build-linux, build-other]
     runs-on: arc-runner-set
-    container: ubuntu:latest
+    container: buildpack-deps:noble
     steps:
     - name: Download all artifacts
       uses: actions/download-artifact@v7

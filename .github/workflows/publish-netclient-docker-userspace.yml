@@ -11,7 +11,7 @@ jobs:
 
   docker:
     runs-on: arc-runner-set
-    container: ubuntu:latest
+    container: buildpack-deps:noble
     steps:
       - name: Checkout
         uses: actions/checkout@v6
