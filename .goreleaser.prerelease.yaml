@@ -16,8 +16,6 @@ builds:
       - linux_arm_6
       - linux_arm_7
       - linux_mips_hardfloat
-      - linux_mips_softfloat
-      - linux_mipsle_softfloat
       - linux_mipsle_hardfloat
     overrides:
       - goos: linux
@@ -50,21 +48,11 @@ builds:
           - CGO_ENABLED=1
           - CC=mips-linux-gnu-gcc
       - goos: linux
-        goarch: mips
-        gomips: softfloat
-        env:
-          - CGO_ENABLED=0
-      - goos: linux
         goarch: mipsle
         gomips: hardfloat
         env:
           - CGO_ENABLED=1
           - CC=mipsel-linux-gnu-gcc
-      - goos: linux
-        goarch: mipsle
-        gomips: softfloat
-        env:
-          - CGO_ENABLED=0
 
 archives:
   - format: binary

@@ -17,8 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Build
-        run: |
-          env CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build .
+        run: CGO_ENABLED=1 go build .
 
   tests:
     runs-on: arc-runner-set
@@ -29,8 +28,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Run Go tests
-        run: |
-          go test  ./... -v
+        run: CGO_ENABLED=1 go test ./... -v
 
   staticcheck:
     runs-on: arc-runner-set
