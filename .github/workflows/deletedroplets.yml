@@ -1,10 +1,12 @@
-name: Delete Droplets
+name: Delete Droplets (disabled - requires gravitl infra)
 
 on:
-  workflow_run:
-    workflows: [Deploy and Test Branch]
-    types:
-      - completed
+  workflow_dispatch:
+  # Disabled: originally triggered on workflow_run of Deploy and Test Branch
+  # workflow_run:
+  #   workflows: [Deploy and Test Branch]
+  #   types:
+  #     - completed
 
 jobs:
   on-success:
