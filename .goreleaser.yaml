@@ -1,13 +1,12 @@
 before:
   hooks:
-    # You may remove this if you don't use go modules.
     - go mod tidy
 builds:
   -
     id: headless
     binary: netclient
     env:
-      - CGO_ENABLED=0
+      - CGO_ENABLED=1
     ldflags:
       - -s -w
     targets:
@@ -23,6 +22,46 @@ builds:
       - windows_amd64
       - darwin_amd64
       - darwin_arm64
+    overrides:
+      - goos: linux
+        goarch: arm64
+        env:
+          - CGO_ENABLED=1
+          - CC=aarch64-linux-gnu-gcc
+      - goos: linux
+        goarch: arm
+        goarm: "5"
+        env:
+          - CGO_ENABLED=1
+          - CC=arm-linux-gnueabi-gcc
+      - goos: linux
+        goarch: arm
+        goarm: "6"
+        env:
+          - CGO_ENABLED=1
+          - CC=arm-linux-gnueabihf-gcc
+      - goos: linux
+        goarch: arm
+        goarm: "7"
+        env:
+          - CGO_ENABLED=1
+          - CC=arm-linux-gnueabihf-gcc
+      - goos: linux
+        goarch: mips
+        env:
+          - CGO_ENABLED=1
+          - CC=mips-linux-gnu-gcc
+      - goos: linux
+        goarch: mipsle
+        env:
+          - CGO_ENABLED=1
+          - CC=mipsel-linux-gnu-gcc
+      - goos: darwin
+        env:
+          - CGO_ENABLED=0
+      - goos: windows
+        env:
+          - CGO_ENABLED=0
 
 archives:
   - format: binary
