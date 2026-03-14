@@ -10,49 +10,37 @@ on:
 jobs:
   linux-headless:
     runs-on: arc-runner-set
-    container: buildpack-deps:noble
+    container: golang:latest
     steps:
       - name: Mark workspace as safe for git
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Checkout
         uses: actions/checkout@v6
-      - name: Setup Go
-        uses: actions/setup-go@v6
-        with:
-          go-version-file: 'go.mod'
       - name: Build
         run: |
           env CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build .
 
   tests:
     runs-on: arc-runner-set
-    container: buildpack-deps:noble
+    container: golang:latest
     steps:
       - name: Mark workspace as safe for git
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Checkout
         uses: actions/checkout@v6
-      - name: Setup Go
-        uses: actions/setup-go@v6
-        with:
-          go-version-file: 'go.mod'
       - name: Run Go tests
         run: |
           go test  ./... -v
 
   staticcheck:
     runs-on: arc-runner-set
-    container: buildpack-deps:noble
+    container: golang:latest
     steps:
       - name: Mark workspace as safe for git
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Checkout
         uses: actions/checkout@v6
-      - name: Setup Go
-        uses: actions/setup-go@v6
-        with:
-          go-version-file: 'go.mod'
       - name: Run static checks
         run: |
           go install honnef.co/go/tools/cmd/staticcheck@latest
-          { ~/go/bin/staticcheck  ./... ; }
+          staticcheck ./...
