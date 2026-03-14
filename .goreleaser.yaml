@@ -56,8 +56,7 @@ builds:
         goarch: mips
         gomips: softfloat
         env:
-          - CGO_ENABLED=1
-          - CC=mips-linux-gnu-gcc
+          - CGO_ENABLED=0
       - goos: linux
         goarch: mipsle
         gomips: hardfloat
@@ -68,8 +67,7 @@ builds:
         goarch: mipsle
         gomips: softfloat
         env:
-          - CGO_ENABLED=1
-          - CC=mipsel-linux-gnu-gcc
+          - CGO_ENABLED=0
       - goos: darwin
         env:
           - CGO_ENABLED=0
