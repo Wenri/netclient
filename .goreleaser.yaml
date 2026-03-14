@@ -48,11 +48,25 @@ builds:
           - CC=arm-linux-gnueabihf-gcc
       - goos: linux
         goarch: mips
+        gomips: hardfloat
+        env:
+          - CGO_ENABLED=1
+          - CC=mips-linux-gnu-gcc
+      - goos: linux
+        goarch: mips
+        gomips: softfloat
         env:
           - CGO_ENABLED=1
           - CC=mips-linux-gnu-gcc
       - goos: linux
         goarch: mipsle
+        gomips: hardfloat
+        env:
+          - CGO_ENABLED=1
+          - CC=mipsel-linux-gnu-gcc
+      - goos: linux
+        goarch: mipsle
+        gomips: softfloat
         env:
           - CGO_ENABLED=1
           - CC=mipsel-linux-gnu-gcc
