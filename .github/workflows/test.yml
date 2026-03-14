@@ -7,6 +7,9 @@ on:
     types: [opened, synchronize, reopened]
   workflow_dispatch:
 
+env:
+  GOFLAGS: -buildvcs=false
+
 jobs:
   linux-headless:
     runs-on: arc-runner-set
