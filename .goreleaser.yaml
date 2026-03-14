@@ -46,11 +46,13 @@ builds:
       - goos: darwin
         goarch: amd64
         env:
-          - CGO_ENABLED=0
+          - CGO_ENABLED=1
+          - CC=o64-clang
       - goos: darwin
         goarch: arm64
         env:
-          - CGO_ENABLED=0
+          - CGO_ENABLED=1
+          - CC=oa64-clang
       - goos: windows
         goarch: amd64
         env:
