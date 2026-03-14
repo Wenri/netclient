@@ -1,4 +1,4 @@
-name: Pre-Release (disabled - requires gravitl/devops)
+name: Pre-Release
 
 on:
   workflow_dispatch:
@@ -9,11 +9,7 @@ on:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "This workflow requires gravitl/devops and is disabled"
-    # Original:
-    # uses: gravitl/devops/.github/workflows/netclientPrerelease.yml@master
-    # with:
-    #   version: ${{ inputs.version }}
-    # secrets: inherit
+    uses: gravitl/devops/.github/workflows/netclientPrerelease.yml@master
+    with:
+      version: ${{ inputs.version }}
+    secrets: inherit
