@@ -13,16 +13,14 @@ permissions:
 jobs:
   prerelease:
     runs-on: arc-runner-set
-    container: ghcr.io/goreleaser/goreleaser-cross:v1.25.3
+    container: ghcr.io/goreleaser/goreleaser-cross:v1.25.1
     steps:
       - name: Install additional cross-compilers
         run: |
-          dpkg --add-architecture mips && dpkg --add-architecture mips64el
           apt-get update && apt-get install -y --no-install-recommends \
             gcc-mips-linux-gnu libc6-dev-mips-cross \
             gcc-mipsel-linux-gnu libc6-dev-mipsel-cross \
-            gcc-mips64el-linux-gnuabi64 libc6-dev-mips64el-cross \
-            musl-dev:arm64
+            gcc-mips64el-linux-gnuabi64 libc6-dev-mips64el-cross
       - name: Mark workspace as safe for git
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Checkout

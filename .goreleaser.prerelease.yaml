@@ -52,7 +52,8 @@ builds:
       - goos: windows
         goarch: arm64
         env:
-          - CGO_ENABLED=0
+          - CGO_ENABLED=1
+          - CC=/llvm-mingw/bin/aarch64-w64-mingw32-gcc
       - goos: darwin
         goarch: amd64
         env:
@@ -73,18 +74,12 @@ builds:
       - -s -w
     targets:
       - linux_amd64
-      - linux_arm64
     overrides:
       - goos: linux
         goarch: amd64
         env:
           - CGO_ENABLED=1
           - CC=musl-gcc
-      - goos: linux
-        goarch: arm64
-        env:
-          - CGO_ENABLED=1
-          - CC=aarch64-linux-musl-gcc
 
 archives:
   - id: default
