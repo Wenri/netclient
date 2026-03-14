@@ -39,7 +39,7 @@ builds:
           - CC=mipsel-linux-gnu-gcc
       - goos: linux
         goarch: mips64le
-        gomips64: hardfloat
+        gomips: hardfloat
         env:
           - CGO_ENABLED=1
           - CC=mips64el-linux-gnuabi64-gcc
