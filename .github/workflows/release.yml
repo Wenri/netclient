@@ -23,6 +23,7 @@ jobs:
             gcc-mips-linux-gnu libc6-dev-mips-cross \
             gcc-mipsel-linux-gnu libc6-dev-mipsel-cross \
             gcc-mips64el-linux-gnuabi64 libc6-dev-mips64el-cross \
+            gcc-mingw-w64-x86-64 \
             musl-tools musl-dev:arm64
       - name: Mark workspace as safe for git
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"

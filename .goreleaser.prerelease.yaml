@@ -16,6 +16,9 @@ builds:
       - linux_mips_hardfloat
       - linux_mipsle_hardfloat
       - linux_mips64le_hardfloat
+      - windows_amd64
+      - darwin_amd64
+      - darwin_arm64
     overrides:
       - goos: linux
         goarch: arm64
@@ -40,6 +43,13 @@ builds:
         env:
           - CGO_ENABLED=1
           - CC=mips64el-linux-gnuabi64-gcc
+      - goos: windows
+        env:
+          - CGO_ENABLED=1
+          - CC=x86_64-w64-mingw32-gcc
+      - goos: darwin
+        env:
+          - CGO_ENABLED=0
 
   -
     id: alpine

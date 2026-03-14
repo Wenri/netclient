@@ -48,7 +48,8 @@ builds:
           - CGO_ENABLED=0
       - goos: windows
         env:
-          - CGO_ENABLED=0
+          - CGO_ENABLED=1
+          - CC=x86_64-w64-mingw32-gcc
 
   -
     id: alpine
