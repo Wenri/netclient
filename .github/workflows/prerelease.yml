@@ -17,12 +17,13 @@ jobs:
     steps:
       - name: Install cross-compilers
         run: |
+          dpkg --add-architecture arm64 && dpkg --add-architecture armhf && dpkg --add-architecture armel && dpkg --add-architecture mips && dpkg --add-architecture mipsel
           apt-get update && apt-get install -y --no-install-recommends \
-            gcc-aarch64-linux-gnu \
-            gcc-arm-linux-gnueabi \
-            gcc-arm-linux-gnueabihf \
-            gcc-mips-linux-gnu \
-            gcc-mipsel-linux-gnu
+            gcc-aarch64-linux-gnu libc6-dev-arm64-cross \
+            gcc-arm-linux-gnueabi libc6-dev-armel-cross \
+            gcc-arm-linux-gnueabihf libc6-dev-armhf-cross \
+            gcc-mips-linux-gnu libc6-dev-mips-cross \
+            gcc-mipsel-linux-gnu libc6-dev-mipsel-cross
       - name: Mark workspace as safe for git
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Checkout
