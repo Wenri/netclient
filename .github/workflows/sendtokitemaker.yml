@@ -1,0 +1,21 @@
+name: Send to Kitemaker (disabled - requires gravitl/devops)
+
+on:
+    workflow_dispatch:
+    # Disabled: originally triggered on issues opened
+    # issues:
+    #     types: opened
+
+
+jobs:
+    send-ticket:
+        runs-on: ubuntu-latest
+        steps:
+          - run: echo "This workflow requires gravitl/devops and is disabled"
+        # Original:
+        # uses: gravitl/devops/.github/workflows/makekitemakerticket.yml@master
+        # with:
+        #     title: ${{ github.event.issue.title }}
+        #     body: ${{ github.event.issue.body }}
+        #     repo_name: ${{ github.event.repository.name }}
+        # secrets: inherit
