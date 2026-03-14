@@ -7,14 +7,13 @@ on:
     types: [opened, synchronize, reopened]
   workflow_dispatch:
 
-env:
-  GOFLAGS: -buildvcs=false
-
 jobs:
   linux-headless:
     runs-on: arc-runner-set
     container: buildpack-deps:noble
     steps:
+      - name: Mark workspace as safe for git
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Checkout
         uses: actions/checkout@v6
       - name: Setup Go
@@ -29,6 +28,8 @@ jobs:
     runs-on: arc-runner-set
     container: buildpack-deps:noble
     steps:
+      - name: Mark workspace as safe for git
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Checkout
         uses: actions/checkout@v6
       - name: Setup Go
@@ -43,6 +44,8 @@ jobs:
     runs-on: arc-runner-set
     container: buildpack-deps:noble
     steps:
+      - name: Mark workspace as safe for git
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Checkout
         uses: actions/checkout@v6
       - name: Setup Go
