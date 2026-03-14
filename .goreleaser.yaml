@@ -62,8 +62,7 @@ builds:
       - goos: windows
         goarch: arm64
         env:
-          - CGO_ENABLED=1
-          - CC=/llvm-mingw/bin/aarch64-w64-mingw32-gcc
+          - CGO_ENABLED=0
 
   -
     id: alpine
