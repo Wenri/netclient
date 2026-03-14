@@ -4,12 +4,29 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "new version number"
+        description: "Version tag (e.g. v1.0.0-rc1)"
         required: true
 
 jobs:
-  release:
-    uses: gravitl/devops/.github/workflows/netclientPrerelease.yml@master
-    with:
-      version: ${{ inputs.version }}
-    secrets: inherit
+  prerelease:
+    runs-on: arc-runner-set
+    container: golang:latest
+    steps:
+      - name: Mark workspace as safe for git
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Fetch tags
+        run: git fetch --force --tags
+      - name: Create and push tag
+        run: |
+          git tag -f ${{ inputs.version }}
+          git push origin ${{ inputs.version }} --force
+      - name: GoReleaser
+        uses: goreleaser/goreleaser-action@v6
+        with:
+          args: release --clean --config .goreleaser.prerelease.yaml --release-notes release.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
