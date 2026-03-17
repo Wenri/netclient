@@ -260,7 +260,7 @@ func watchPeerConnections(ctx context.Context, waitg *sync.WaitGroup) {
 				}
 				peerInfo, err := networking.GetPeerInfo()
 				if err != nil {
-					slog.Error("failed to get peer Info", "error", err)
+					slog.Error("failed to get peer info", "error", err)
 					return
 				}
 				devicePeerMap, err := wireguard.GetPeersFromDevice(ncutils.GetInterfaceName())
@@ -561,7 +561,6 @@ func autoRelayME(method, serverName, nodeID, peernodeID, relayID string) error {
 	headers.Set("Authorization", "Bearer "+token)
 	_, err = ncutils.SendRequest(method, url, headers, models.AutoRelayMeReq{NodeID: peernodeID, AutoRelayGwID: relayID})
 	if err != nil {
-		slog.Error("error asking server to relay me", err.Error())
 		return err
 	}
 	return nil
