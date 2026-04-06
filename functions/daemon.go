@@ -185,7 +185,7 @@ func startGoRoutines(wg *sync.WaitGroup) context.CancelFunc {
 
 	err = dns.Init()
 	if err != nil {
-		logger.FatalLog("error initializing dns manager:", err.Error())
+		logger.Log(0, "error initializing dns manager:", err.Error())
 	}
 	slog.Info("configuring netmaker wireguard interface")
 	var pullresp models.HostPull
