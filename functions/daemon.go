@@ -379,6 +379,10 @@ func messageQueue(ctx context.Context, wg *sync.WaitGroup, server *config.Server
 func setupMQTT(server *config.Server) error {
 	opts := mqtt.NewClientOptions()
 	opts.AddBroker(server.Broker)
+	// MPTCP-capable broker dials with edge-address rewrite from
+	// /etc/netclient/peers_extra_ips.json. Falls back to plain TCP when
+	// the broker (or any hop) doesn't speak MPTCP.
+	opts.SetCustomOpenConnectionFn(mptcpMqttOpenConnectionFn)
 	if server.BrokerType == "emqx" {
 		opts.SetUsername(config.Netclient().ID.String())
 		opts.SetPassword(config.Netclient().HostPass)
@@ -440,6 +444,8 @@ func setupMQTT(server *config.Server) error {
 func setupMQTTSingleton(server *config.Server, publishOnly bool) error {
 	opts := mqtt.NewClientOptions()
 	opts.AddBroker(server.Broker)
+	// See setupMQTT for rationale.
+	opts.SetCustomOpenConnectionFn(mptcpMqttOpenConnectionFn)
 	if server.BrokerType == "emqx" {
 		opts.SetUsername(config.Netclient().ID.String())
 		opts.SetPassword(config.Netclient().HostPass)
